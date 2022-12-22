@@ -8,7 +8,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 0
+    path: Assets/Samples/Google Cardboard XR Plugin for Unity/1.19.0/Hello Cardboard/Scenes/HelloCardboard.unity
+    guid: 145a2a45d7bc746b19cb68410368bf96
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 66c8d4a665094464990deb8630d2cd01, type: 2}
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 80c236f1832faab438f6dd368465e2a2, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: e56f557ce5bbe544fa827786a5da86dc, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: cdd15eb3e8570ea44aae8185af938aa0, type: 2}
