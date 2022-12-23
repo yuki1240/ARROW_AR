@@ -6,15 +6,13 @@ using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private GameObject bow = null;
+    [SerializeField] private GameObject arrowPrefab = null;
 
     [SerializeField] private ARTrackedImageManager imageManager = null;
 
     public TextMeshProUGUI text1 = null;
 
     private Camera arCamera = null;
-
-    // private Vector3 markerPos = Vector3.zero;
 
     private void Start()
     {
@@ -23,20 +21,53 @@ public class PlayerController : MonoBehaviour
         // マーカー認識時のイベントハンドラーの設定
         // ARTrackedImagesChangedEventArgsクラスが取得可能
         imageManager.trackedImagesChanged += OnTrackedImagesChanged;
+
+        InvokeRepeating("Shot", 0f, 1f);
     }
 
     private void Update()
     {
-        var offset = arCamera;
+        if (Input.touchCount == 0 || Input.GetTouch(0).phase != TouchPhase.Ended)
+        {
+            return;
+        }
 
+        // GameObject arrowObj = Instantiate(arrow, arCamera.transform.position, arCamera.transform.rotation);
+        // arrowObj.transform.parent = arCamera.transform;
 
-        var camForwardPos = arCamera.transform.forward;
-        bow.transform.position = camForwardPos;
-
-        var camRot = arCamera.transform.rotation;
-        bow.transform.rotation = camRot;
-
+        //arrowRb = arrowObj.GetComponent<Rigidbody>();
+        //arrowRb.AddForce(arCamera.transform.forward * 5, ForceMode.Impulse);
     }
+
+    private void Shot()
+    {
+        GameObject arrow = Instantiate(arrowPrefab, arCamera.transform.position, arCamera.transform.rotation);
+        Rigidbody arrowRb = arrow.GetComponent<Rigidbody>();
+
+        // 弓の速度を設定
+        arrowRb.AddForce(transform.forward * 5);
+
+        // 5秒後に砲弾を破壊する
+        Destroy(arrow, 5.0f);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /// <summary>
     /// 認識した画像マーカーの場所を取得
